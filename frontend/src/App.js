@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import SignupForm from './SignupForm';
+import ExchangeGraph from './ExchangeGraph';
 
 function App() {
+  const handleFormSubmit = (userData) => {
+    // Post user data to backend
+    fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userData),
+    }).then(() => alert('You have been registered!'));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <SignupForm onSubmit={handleFormSubmit} />
+      <ExchangeGraph />
     </div>
   );
 }
 
 export default App;
+
